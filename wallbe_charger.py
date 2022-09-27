@@ -81,23 +81,23 @@ class WALLBE_Charger(device.ModbusDevice):
         super(EV_Charger, self).__init__(*args)
 
         self.info_regs = [
-            Reg_text(5001, 6, '/Serial', little=True),
-            Reg_ver(5007, '/FirmwareVersion'),
+            Reg_text(304, 6, '/Serial', little=True),
+            Reg_ver(105, 2, '/FirmwareVersion'),
         ]
 
         self.data_regs = [
-            Reg_e16(5009, '/Mode', WALLBE_MODE, write=True),
-            Reg_e16(5010, '/StartStop', WALLBE_CHARGE, write=True),
+            Reg_e16(100, '/Mode', WALLBE_MODE, write=True),
+            Reg_e16(400, '/StartStop', WALLBE_CHARGE, write=True),
             Reg_u16(5011, '/Ac/L1/Power', 1, '%d W'),
             Reg_u16(5012, '/Ac/L2/Power', 1, '%d W'),
             Reg_u16(5013, '/Ac/L3/Power', 1, '%d W'),
             Reg_u16(5014, '/Ac/Power',    1, '%d W'),
-            Reg_e16(5015, '/Status', WALLBE_STATUS),
+            Reg_e16(100, '/Status', WALLBE_STATUS),
             Reg_u16(5016, '/SetCurrent',  1, '%d A', write=True),
-            Reg_u16(5017, '/MaxCurrent',  1, '%d A', write=True),
-            Reg_u16(5018, '/Current',    10, '%.1f A'),
-            Reg_u32b(5019, '/ChargingTime', 1, '%d s'),
-            Reg_u16(5021, '/Ac/Energy/Forward', 100, '%.2f kWh'),
+            Reg_u16(101, '/MaxCurrent',  1, '%d A', write=True),
+            Reg_u16(300, '/Current',    10, '%.1f A'),
+            Reg_u32b(102, '/ChargingTime', 1, '%d s'),
+            Reg_u32b(132, '/Ac/Energy/Forward', 100, '%.2f kWh'),
             Reg_e16(5026, '/Position', WALLBE_POSITION, write=True),
             Reg_text(5027, 22, '/CustomName', little=True, encoding='utf-8', write=True),
             Reg_u16(5049, '/AutoStart', write=(0,1))
